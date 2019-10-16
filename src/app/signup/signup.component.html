@@ -1,0 +1,41 @@
+<div class="user">
+  <header class="user__header">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3219/logo.svg" alt="" />
+     <h1 class="user__title">Sign Up</h1>
+  </header>
+
+  <form class="form" [formGroup]="signup" (ngSubmit)="onSubmit()" >
+      <div class="form__group">
+          <input type="text" placeholder="Username" class="form__input" [formControl]="username"/>
+          <p class="validator-error" *ngIf="username.invalid && (username.touched || username.dirty)">* Username is Required</p>
+      </div>
+
+      <div class="form__group">
+          <input type="text" placeholder="First Name" class="form__input" [formControl]="firstName" />
+          <p class="validator-error" *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)">* First Name is Required</p>
+      </div>
+
+      <div class="form__group">
+          <input type="text" placeholder="Last Name" class="form__input" [formControl]="lastName" />
+          <p class="validator-error" *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)">* Last Name is Required</p>
+      </div>
+
+      <div class="form__group">
+          <input type="email" placeholder="Email" class="form__input" [formControl]="email" />
+          <div class="validator-error"  *ngIf= "email.invalid && (email.touched || email.dirty)" >
+            <p *ngIf="email.errors['required']">* Email is Required</p>
+            <p *ngIf="email.errors['pattern']">* This field requires atleast the '@' character</p>
+          </div>
+      </div>
+
+      <div class="form__group">
+          <input type="password" placeholder="Password" class="form__input" [formControl]="password" />
+          <div class="validator-error" *ngIf="password.invalid && (password.dirty || password.touched)" >
+            <p *ngIf="password.errors['required']">* Password is Required</p>
+            <p *ngIf="password.errors['minlength']">* This field requires min length 8</p>
+          </div>
+      </div>
+
+      <button class="btn" type="submit" [disabled]="signup.invalid">Register</button>
+  </form>
+</div>

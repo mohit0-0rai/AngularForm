@@ -20,6 +20,7 @@ export class SignupComponent implements OnInit {
   private signupModel: SignupModel;
 
   constructor(private signupService: SignupService, private router: Router) { }
+
   ngOnInit() {
     this.createFormControls();
     this.createForm();
